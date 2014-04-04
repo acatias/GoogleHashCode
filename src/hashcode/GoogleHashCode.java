@@ -273,7 +273,7 @@ public class GoogleHashCode {
 				
 				//System.out.println("PAINTSQ " + sq.middleLine + " " + sq.middleColumn + " " + sq.size + "\n");
 				
-				sb.append("PAINTSQ " + sq.middleLine + " " + sq.middleColumn + " " + sq.size + "\n");
+				sb.append("PAINTSQ " + sq.middleLine + " " + sq.middleColumn + " " + (sq.size - 1) / 2 + "\n");
 				
 				//System.out.print(sq.startLine + "%" + sq.startColumn + "$" + sq.size);
 				
