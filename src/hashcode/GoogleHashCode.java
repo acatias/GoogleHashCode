@@ -1,0 +1,9 @@
+package hashcode;
+
+public class GoogleHashCode {
+
+	public static void main(String[] args) {
+		System.out.println("Hello, World!");
+	}
+
+}
