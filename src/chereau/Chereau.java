@@ -34,10 +34,6 @@ public class Chereau {
 			line=line.substring(line.indexOf(" ")+1);
 			int initialNode = Integer.parseInt(line);
 
-			int test= extractTime();
-				test = extractInitialNode();
-				test = extractNbVoiture();
-			
 			System.out.println(nbNode + "$" + time + "$"+nbVehicule+"$"+initialNode);
 			
 			line = br.readLine();
@@ -70,6 +66,11 @@ public class Chereau {
 			
 			System.out.println();
 			
+			Integer[] result = new Integer[3];
+			result[0]=25;
+			result[1]=0;
+			result[2]=0;
+			createOutput(result);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -167,6 +168,27 @@ public class Chereau {
 		line=line.substring(line.indexOf(" ")+1);
 		line=line.substring(line.indexOf(" ")+1);
 		return Integer.parseInt(line);
+	}
+	
+	public static void createOutput(Integer[] result){
+		
+		
+		FileWriter fw;
+		try {
+			fw = new FileWriter(new File ("out.txt"));
+			@SuppressWarnings("resource")
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(""+result.length);
+			for(int i=0; i<result.length; i++){
+				bw.write("\n");
+				bw.write(result[i]+"");
+			}
+			bw.flush();
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
