@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 public class Chereau {
 
 	public static void main(String[] args){
@@ -42,7 +44,7 @@ public class Chereau {
 				line=br.readLine();
 			}
 
-			
+			//création des nodes			
 			
 			System.out.println();
 			
