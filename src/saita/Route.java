@@ -2,14 +2,13 @@ package saita;
 
 public class Route {
 
-	int start; 
-	int end; 
-	int time;
-	int dist;
-	boolean isDeux;
-	boolean isVisited;
+	public int start; 
+	public int end; 
+	public int time;
+	public int dist;
+	public boolean isDeux;
+	public boolean isVisited;
 
-	
 	public Route(int start, int end, int time, int dist, boolean isDeux) {
 		this.start = start;
 		this.end = end;
