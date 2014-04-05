@@ -121,7 +121,7 @@ public class Chereau {
 				line=line.substring(line.indexOf(" ")+1);
 				int length = Integer.parseInt(line);
 				if(direction!=1){
-					graph[secondNode].addRoute(new Route(firstNode, secondNode, roadTime, length, direction!=1));
+					graph[secondNode].addRoute(new Route(secondNode, firstNode, roadTime, length, direction!=1));
 				}
 				graph[firstNode].addRoute(new Route(firstNode, secondNode, roadTime, length, direction!=1));
 				line=br.readLine();
