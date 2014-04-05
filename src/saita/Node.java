@@ -5,9 +5,9 @@ import java.util.Iterator;
 
 public class Node {
 	
-	int index;
+	public int index;
 	
-	ArrayList <Route> routes = new ArrayList <Route> ();
+	public ArrayList <Route> routes = new ArrayList <Route> ();
 	
 	public Node(int index) {
 		this.index = index;
