@@ -253,11 +253,13 @@ public class TrialRound {
 				
 				numInst++;
 				
-				sq.println();
-
-				System.out.println("Command: " + numInst);
+				//sq.println();
 				
-				sb.append("PAINTSQ " + sq.centerRow + " " + sq.centerColumn + " " + sq.paintSize + "\n");
+				String command = "PAINTSQ " + sq.centerRow + " " + sq.centerColumn + " " + sq.paintSize + "\n"; 
+
+				System.out.print("Command " + numInst + ": " + command);
+
+				sb.append(command);
 				
 				for(int i = sq.startRow; i <= sq.endRow; i++ ) {
 
@@ -281,9 +283,11 @@ public class TrialRound {
 						
 						numInst++;
 
-						System.out.println("Command: " + numInst);
+						String command = "PAINTSQ " + i + " " + j + " 0\n"; 
 
-						sb.append("PAINTSQ " + i + " " + j + " 0\n");
+						System.out.print("Command " + numInst + ": " + command);
+
+						sb.append(command);
 					}
 				}			
 			}
