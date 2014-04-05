@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class chereau {
+public class Chereau {
 
 	public static void main(String[] args){
 		//parsing du fichier et création du graph
@@ -42,6 +42,8 @@ public class chereau {
 				line=br.readLine();
 			}
 
+			
+			
 			System.out.println();
 			
 		} catch (IOException e) {
