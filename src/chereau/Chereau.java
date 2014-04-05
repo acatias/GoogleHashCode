@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import saita.Node;
+import saita.Route;
+
 public class Chereau {
 
 	public static void main(String[] args){
@@ -42,7 +45,27 @@ public class Chereau {
 				line=br.readLine();
 			}
 
+			Node[] graph = new Node[nbNode];
+			for(int i=0; i<graph.length; i++){
+				graph[i]=new Node(i);
+			}
 			
+			while(line!=null){
+				int firstNode = Integer.parseInt(line.substring(0, line.indexOf(" ")));
+				line=line.substring(line.indexOf(" ")+1);
+				int secondNode = Integer.parseInt(line.substring(0, line.indexOf(" ")));
+				line=line.substring(line.indexOf(" ")+1);
+				int direction = Integer.parseInt(line.substring(0, line.indexOf(" ")));
+				line=line.substring(line.indexOf(" ")+1);
+				int roadTime = Integer.parseInt(line.substring(0, line.indexOf(" ")));
+				line=line.substring(line.indexOf(" ")+1);
+				int length = Integer.parseInt(line);
+				if(direction!=1){
+					graph[secondNode].addRoute(new Route(firstNode, secondNode, roadTime, length, direction!=1));
+				}
+				graph[firstNode].addRoute(new Route(firstNode, secondNode, roadTime, length, direction!=1));
+				line=br.readLine();
+			}
 			
 			System.out.println();
 			
