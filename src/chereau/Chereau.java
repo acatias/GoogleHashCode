@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import saita.Node;
 import saita.Route;
@@ -206,6 +207,8 @@ public class Chereau {
 		try {
 			fw = new FileWriter(new File (OUTPUT_NAME));
 			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(result.length+"");
+			bw.write("\n");
 			for(int i=0; i<result.length; i++){
 				createOutput(result[i], bw);
 				bw.write("\n");
@@ -214,6 +217,37 @@ public class Chereau {
 			bw.close();
 			fw.close();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void createCompleteOutput(List<List<Integer>> result) {
+		FileWriter fw;
+		try {
+			fw = new FileWriter(new File (OUTPUT_NAME));
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(result.size()+"");
+			bw.write("\n");
+			for(List<Integer> element:result){
+				createOutput(element, bw);
+				bw.write("\n");
+			}
+			bw.flush();
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	}
+
+	private static void createOutput(List<Integer> result, BufferedWriter bw) {
+		try {
+			bw.write(""+result.size());
+			for(int i=0; i<result.size(); i++){
+				bw.write("\n");
+				bw.write(result.get(i)+"");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

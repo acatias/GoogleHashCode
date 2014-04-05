@@ -1,6 +1,8 @@
 package chereau;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import saita.Node;
 import saita.Route;
@@ -26,4 +28,12 @@ public class Util {
 		}
 		return result;
 	}
+	
+	public static <T> List<T> clone(List<T> consideredList){
+		List<T> resultList = new LinkedList<T>();
+		for(int i =0; i<consideredList.size(); i++){
+			resultList.add(consideredList.get(i));
+		}
+		return resultList;
+	}	
 }
