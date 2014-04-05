@@ -44,7 +44,7 @@ public class Chereau {
 				line=br.readLine();
 			}
 
-			//création des nodes			
+			//création des nodes	 		
 			
 			System.out.println();
 			
