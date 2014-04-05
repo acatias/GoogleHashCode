@@ -61,6 +61,10 @@ public class Basic {
 					
 				}
 			}
+			
+			allVisitedNodes.add(visitedNodes.size());
+			
+			allVisitedNodes.addAll(visitedNodes);
 		
 		}
 		
@@ -88,7 +92,7 @@ public class Basic {
 		nodes[0] = n1;
 		nodes[1] = n2;
 		
-		System.out.print("Solution");
+		System.out.println("Solution");
 		
 		for(int i : Basic.go(nodes, 1, 3000, 2)) {
 			
