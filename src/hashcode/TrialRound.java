@@ -207,15 +207,11 @@ public class TrialRound {
 			
 			rowNum = 0;
 			
+			line = br.readLine();
+			
 			while(line != null) {
 				
 				try {
-					
-					line = br.readLine();
-					
-					if (line == null) {
-						break;
-					}
 					
 					for (int i = 0; i < line.length(); i++) {
 						
@@ -230,6 +226,8 @@ public class TrialRound {
 					}
 					
 					rowNum++;
+
+					line = br.readLine();
 					
 				} catch (IOException e) {
 					e.printStackTrace();
