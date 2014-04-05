@@ -13,9 +13,9 @@ public class TrialRound {
 	public static void trialV1() {
 		
 		try {
-			FileReader fr = new FileReader(new File("C:/github/GoogleHashCode/doodle.txt"));
+			FileReader fr = new FileReader(new File("doodle.txt"));
 			
-			FileWriter fw = new FileWriter(new File ("C:/github/GoogleHashCode/out.txt"));
+			FileWriter fw = new FileWriter(new File ("out.txt"));
 						
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -173,9 +173,9 @@ public class TrialRound {
 	public static void trialV2() {
 		
 		try {
-			FileReader fr = new FileReader(new File("C:/github/GoogleHashCode/doodle.txt"));
+			FileReader fr = new FileReader(new File("doodle.txt"));
 			
-			FileWriter fw = new FileWriter(new File ("C:/github/GoogleHashCode/out4.txt"));
+			FileWriter fw = new FileWriter(new File ("out4.txt"));
 						
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -207,15 +207,11 @@ public class TrialRound {
 			
 			rowNum = 0;
 			
+			line = br.readLine();
+			
 			while(line != null) {
 				
 				try {
-					
-					line = br.readLine();
-					
-					if (line == null) {
-						break;
-					}
 					
 					for (int i = 0; i < line.length(); i++) {
 						
@@ -230,6 +226,8 @@ public class TrialRound {
 					}
 					
 					rowNum++;
+
+					line = br.readLine();
 					
 				} catch (IOException e) {
 					e.printStackTrace();
