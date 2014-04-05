@@ -12,6 +12,8 @@ public class Basic {
 	
 	public static Integer[] go(Node[] nodes, int nodeStart, int time, int voitures) {
 
+		Long km = 0l;
+		
 		Hashtable visitedRoutes = new Hashtable();
 				
 		ArrayList <Integer> allVisitedNodes = new ArrayList <Integer> ();
@@ -65,6 +67,11 @@ public class Basic {
 					}
 				}
 
+				if (bestRoute != null) {
+					
+					km += bestRoute.dist;
+				}
+				
 				// Best visited in min (time) with less than x visits
 
 				if (bestRoute == null) { 
@@ -73,8 +80,6 @@ public class Basic {
 					int currentTime;
 					
 					for (int i = 0; i < routes.length; i++) {
-						
-						// ToDo:  To revisit if necessary
 						
 						//routes[i].print();
 						
@@ -90,7 +95,7 @@ public class Basic {
 								
 							}
 													
-							if (currentTime < bestTime && lastRoute != routes[i] && howManyTimes < 5) {
+							if (currentTime < bestTime && lastRoute != routes[i] && howManyTimes < 2) {
 								
 								bestTime = currentTime;
 								bestRoute = routes[i];	
@@ -107,8 +112,6 @@ public class Basic {
 	
 					for (int i = 0; i < routes.length; i++) {
 						
-						// ToDo:  To revisit if necessary
-						
 						//routes[i].print();
 						
 						if (goneTime + routes[i].time <= time) {
@@ -118,15 +121,38 @@ public class Basic {
 							if (visitedRoutes.containsKey(routes[i])) {
 								
 								howManyTimes = (Integer) (visitedRoutes.get(routes[i]));
-								
 							}
 													
-							if (lastRoute != routes[i] && howManyTimes < 8 ) {
+							if (lastRoute != routes[i] && howManyTimes < 4) {
 								
 								bestRoute = routes[i];	
 							}
 							
 							//System.out.println("Current time: " + currentTime + " Min time: " + bestTime);
+						}
+					}
+				}
+
+				if (bestRoute == null) { 
+
+					int count = 0;
+					
+					while (true) {
+						
+						count++;
+						
+						int random = (int) (Math.random() * routes.length);
+
+						if (goneTime + routes[random].time <= time && ! routes[random].isVisited) {
+							
+							bestRoute = routes[random];
+							
+							break;
+						}
+						
+						if (count > 100) {
+							
+							break;
 						}
 					}
 				}
@@ -148,12 +174,13 @@ public class Basic {
 							break;
 						}
 						
-						if (count > 10) {
+						if (count > 100) {
 							
 							break;
 						}
 					}
 				}
+
 				
 				if (bestRoute != null) {
 					
@@ -162,10 +189,10 @@ public class Basic {
 					goneTime += bestRoute.time;
 						
 					nodeIndex = bestRoute.start == nodeIndex ? bestRoute.end : bestRoute.start;					
-				
+									
 					System.out.println("Voiture: " + v 
-										+ " Node:" + nodeIndex 
-										+ " Time: " + goneTime); 
+										+ " Node: " + nodeIndex 
+										+ " Time: " + goneTime + " Km: " + km); 
 					
 //										+ " Last route: " + lastRoute
 //										+ " Best route: " + bestRoute
