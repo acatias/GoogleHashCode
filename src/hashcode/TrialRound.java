@@ -161,9 +161,9 @@ public class TrialRound {
 	
 	public static void eraseMatrix(int[][] matrix, LargestSquare.Square sq) {
 		
-		for(int i = sq.startLine; i < sq.startLine - sq.size; i-- ) {
+		for(int i = sq.endRow; i < sq.endRow - sq.size; i-- ) {
 			
-			for(int j = sq.startColumn; j < sq.startColumn - sq.size; j-- ) {
+			for(int j = sq.endColumn; j < sq.endColumn - sq.size; j-- ) {
 				
 				matrix[i][j] = 0;				
 			}
@@ -175,7 +175,7 @@ public class TrialRound {
 		try {
 			FileReader fr = new FileReader(new File("C:/github/GoogleHashCode/doodle.txt"));
 			
-			FileWriter fw = new FileWriter(new File ("C:/github/GoogleHashCode/out2.txt"));
+			FileWriter fw = new FileWriter(new File ("C:/github/GoogleHashCode/out4.txt"));
 						
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -193,13 +193,11 @@ public class TrialRound {
 				String rows = line.substring(0, line.indexOf(" "));
 				String columns = line.substring(line.indexOf(" ") + 1);
 				
-				System.out.println(rows + "$" + columns + "$");
-				
 				rowNum = Integer.valueOf(rows);
 				
 				colNum = Integer.valueOf(columns);
 						
-				System.out.println(rowNum + "$" + colNum + "$");
+				System.out.println("Rows: " + rowNum + " Columns: " + colNum);
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -249,23 +247,47 @@ public class TrialRound {
 			
 			int numInst = 0;
 			
-			while (LargestSquare.getMaxSquare(matrix) != null) {
+			LargestSquare.Square sq = LargestSquare.getMaxSquare(matrix);
+			
+			while (sq != null && sq.size > 1) {
 				
-				LargestSquare.Square sq = LargestSquare.getMaxSquare(matrix);
+				numInst++;
 				
-				sb.append("PAINTSQ " + sq.middleLine + " " + sq.middleColumn + " " + (sq.size - 1) / 2 + "\n");
-				
-				for(int i = sq.startLine; i > sq.startLine - sq.size; i-- ) {
+				sq.println();
 
-					for(int j = sq.startColumn; j > sq.startColumn - sq.size; j-- ) {
+				System.out.println("Command: " + numInst);
+				
+				sb.append("PAINTSQ " + sq.centerRow + " " + sq.centerColumn + " " + sq.paintSize + "\n");
+				
+				for(int i = sq.startRow; i <= sq.endRow; i++ ) {
+
+					for(int j = sq.startColumn; j <= sq.endColumn; j++) {
 						
 						matrix[i][j] = 0;				
 					}
-				}
-				
-				numInst++;
+				}				
+
+				sq = LargestSquare.getMaxSquare(matrix);
 			}
 			
+			int numRows = matrix.length;
+			int numCols = matrix[0].length;
+			
+			for (int i = 0; i < numRows; i++) {
+				
+				for (int j = 0; j < numCols; j++) {
+					
+					if (matrix[i][j] != 0) {
+						
+						numInst++;
+
+						System.out.println("Command: " + numInst);
+
+						sb.append("PAINTSQ " + i + " " + j + " 0\n");
+					}
+				}			
+			}
+
 			bw.write(numInst + "\n");
 			
 			bw.write(sb.toString());
@@ -277,7 +299,5 @@ public class TrialRound {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
 	}
-
 }

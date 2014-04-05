@@ -20,29 +20,52 @@ public class LargestSquare {
 
 2) Find the maximum entry in S[R][C]
 
-3) Using the value and coordinates of maximum entry in S[i], 
-
-print sub-matrix of M[][]
+3) Using the value and coordinates of maximum entry in S[i], print sub-matrix of M[][]
 
 */
 
 	public static void main(String[] args) {
 
-		System.out.println("Hello, World!");
+		int[][] M = {{0, 0, 1, 1},
+					 {0, 1, 1, 1},
+					 {0, 1, 1, 1},
+					 {0, 1, 1, 1},
+					 {1, 1, 1, 0},
+					 {1, 1, 1, 0}};
 		
+		getMaxSquare(M).println();
+
+		
+		int[][] N = {{0, 0, 1, 1},
+				 	 {0, 0, 0, 0},
+				 	 {0, 0, 0, 0},
+				 	 {0, 0, 0, 0},
+				 	 {1, 1, 1, 0},
+				 	 {1, 1, 1, 0}};
+	
+		getMaxSquare(N).println();
+		
+		int[][] P = {{0, 0, 1, 1},
+			 	     {0, 0, 0, 0},
+			 	     {0, 0, 0, 0},
+			 	     {0, 0, 0, 0},
+			 	     {1, 1, 1, 0},
+			 	     {1, 0, 1, 0}};
+
+		getMaxSquare(P).println();
 	}
 
-	public static Square getMaxSquare(int[][] M){
+	public static Square getMaxSquare(int[][] M) {
 
-		int numLines = M.length;
+		int numRows = M.length;
 
 		int numColumns = M[0].length;
 
-		int[][] S = new int[numLines][numColumns];
+		int[][] S = new int[numRows][numColumns];
 
 		/* Set first column of S[][]*/
 
-		for(int i = 0; i < numLines; i++){
+		for(int i = 0; i < numRows; i++){
 			
 			S[i][0] = M[i][0];
 
@@ -58,11 +81,11 @@ print sub-matrix of M[][]
 
 		/* Construct other entries of S[][]*/
 
-		for(int i = 1; i < numLines; i++){
+		for(int i = 1; i < numRows; i++){
 
 			for(int j = 1; j < numColumns; j++){
 
-				if(M[i][j] == 1) { 
+				if (M[i][j] == 1) { 
 
 					S[i][j] = Math.min(S[i][j-1], Math.min(S[i-1][j], S[i-1][j-1])) + 1;
 		        
@@ -77,15 +100,15 @@ print sub-matrix of M[][]
 
 		Square maxSquare = null;
 
-		for(int i = 0; i < numLines; i++){
+		for(int i = 0; i < numRows; i++){
 
 			for(int j = 0; j < numColumns; j++){
 
 				int squareSize = S[i][j];
 			    	
-				if (squareSize != 0) {
+				if (squareSize > maxSquareSize) {
 
-					if (squareSize > maxSquareSize && (squareSize % 2 != 0)) {
+					if (squareSize % 2 == 1) {
 
 						maxSquare = new Square(i, j, squareSize);
 
@@ -93,12 +116,9 @@ print sub-matrix of M[][]
 
 					} else {
 
-						if(squareSize > maxSquareSize && (squareSize % 2 != 1)) {
-
-							maxSquare = new Square(i, j, squareSize - 1);
+						maxSquare = new Square(i, j, squareSize - 1);
 							
-							maxSquareSize = squareSize-1;
-						}
+						maxSquareSize = squareSize - 1;
 					}
 				}
 			}    
@@ -109,25 +129,47 @@ print sub-matrix of M[][]
 
 	public static class Square {
 
-		int middleLine, middleColumn;
+		int centerRow, centerColumn;
+		
+		int startRow, startColumn;
 
-		int startLine, startColumn;
+		int endRow, endColumn;
 
 		int size;
+		
+		int paintSize;
 
-		public Square(int startLine, int startColumn, int size) {
+		public Square(int endRow, int endColumn, int size) {
 
 			super();
 
 			this.size = size;
 
-			this.middleLine = startLine - size + 1 + size / 2;
+			this.centerRow = endRow - size + 1 + size / 2;
 
-			this.middleColumn = startColumn - size + 1 + size/2;
+			this.centerColumn = endColumn - size + 1 + size / 2;
 
-			this.startLine = startLine;
+			this.startRow = endRow - size + 1;
+			
+			this.startColumn = endColumn - size + 1;
+			
+			this.endRow = endRow;
 
-			this.startColumn = startColumn;
+			this.endColumn = endColumn;
+			
+			this.paintSize = (size - 1) / 2;
+		}
+		
+		public void println() {
+			System.out.println("Largest square: ");
+			System.out.println("  size: " + size);
+			System.out.println("  paitnSize: " + paintSize);
+			System.out.println("  centerRow: " + centerRow);
+			System.out.println("  centerColumn: " + centerColumn);
+			System.out.println("  startRow: " + startRow);
+			System.out.println("  startColumn: " + startColumn);
+			System.out.println("  endRow: " + endRow);
+			System.out.println("  endColumn: " + endColumn);
 		}
 	}
 }
