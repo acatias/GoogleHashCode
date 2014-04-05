@@ -13,9 +13,9 @@ public class TrialRound {
 	public static void trialV1() {
 		
 		try {
-			FileReader fr = new FileReader(new File("C:/github/GoogleHashCode/doodle.txt"));
+			FileReader fr = new FileReader(new File("doodle.txt"));
 			
-			FileWriter fw = new FileWriter(new File ("C:/github/GoogleHashCode/out.txt"));
+			FileWriter fw = new FileWriter(new File ("out.txt"));
 						
 			BufferedReader br = new BufferedReader(fr);
 			
