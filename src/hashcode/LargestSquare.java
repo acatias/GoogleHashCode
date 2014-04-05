@@ -163,7 +163,7 @@ public class LargestSquare {
 		public void println() {
 			System.out.println("Largest square: ");
 			System.out.println("  size: " + size);
-			System.out.println("  paitnSize: " + paintSize);
+			System.out.println("  paintSize: " + paintSize);
 			System.out.println("  centerRow: " + centerRow);
 			System.out.println("  centerColumn: " + centerColumn);
 			System.out.println("  startRow: " + startRow);
