@@ -207,6 +207,8 @@ public class Chereau {
 		try {
 			fw = new FileWriter(new File (OUTPUT_NAME));
 			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(result.length);
+			bw.write("\n");
 			for(int i=0; i<result.length; i++){
 				createOutput(result[i], bw);
 				bw.write("\n");
