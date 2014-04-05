@@ -200,7 +200,6 @@ public class Chereau {
 		}
 		
 	}
-	
 		
 	public static void createCompleteOutput(Integer[][] result){
 		FileWriter fw;

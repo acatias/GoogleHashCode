@@ -12,6 +12,8 @@ public class Basic {
 		
 		for(int v = 0; v < voitures; v++) {
 
+			System.out.println("Voiture: " + v);
+			
 			ArrayList <Integer> visitedNodes = new ArrayList <Integer> ();
 			
 			int goneTime = 0;		
@@ -27,11 +29,17 @@ public class Basic {
 	
 				Node currentNode = nodes[nodeIndex];
 				
+				System.out.println("Visited node: " + nodeIndex);
+				
+				currentNode.print();
+				
 				Route[] routes = (Route[]) currentNode.routes.toArray(new Route [0]);
 	
 				for (int i = 0; i < routes.length; i++) {
 					
 					// ToDo:  To revisit if necessary
+					
+					routes[i].print();
 					
 					if (goneTime + routes[i].time <= time && !routes[i].isVisited) {
 					
@@ -58,14 +66,12 @@ public class Basic {
 				} else {
 					
 					break;
-					
 				}
 			}
 			
 			allVisitedNodes.add(visitedNodes.size());
 			
 			allVisitedNodes.addAll(visitedNodes);
-		
 		}
 		
 		return (Integer[]) allVisitedNodes.toArray(new Integer[0]);
@@ -73,28 +79,30 @@ public class Basic {
 	
 	public static void main(String[] args) {
 		
-		Node n1 = new Node(1);
+		Node n0 = new Node(0);
 		
-		Route route12 = new Route(2, 1, 20, 200, true); 
+		Route route01 = new Route(1, 0, 10, 100, true); 
 		
-		n1.addRoute(new Route(1, 3, 50, 500, false));
-		n1.addRoute(route12);
+		n0.addRoute(route01); // 0 -> 1
+		n0.addRoute(new Route(0, 2, 10, 200, false)); // 0 -> 2
 		
-		n1.print();
+		n0.print();
 
-		Node n2 = new Node(2);
+		Node n1 = new Node(1); 
+		n1.addRoute(route01); // 1 -> 0	
 		
-		n2.addRoute(route12);	
-		n2.addRoute(new Route(1, 4, 40, 400, false));
-
-		Node[] nodes = new Node[2];
+		Node n2 = new Node(2); 
+		n2.addRoute(new Route(2, 1, 10, 300, false)); // 2 -> 1
 		
-		nodes[0] = n1;
-		nodes[1] = n2;
+		Node[] nodes = new Node[3];
+		
+		nodes[0] = n0;
+		nodes[1] = n1;
+		nodes[2] = n2;
 		
 		System.out.println("Solution");
 		
-		for(int i : Basic.go(nodes, 1, 3000, 2)) {
+		for(int i : Basic.go(nodes, 0, 3000, 2)) {
 			
 			System.out.println(i);
 		}
