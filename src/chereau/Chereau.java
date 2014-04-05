@@ -71,6 +71,11 @@ public class Chereau {
 			result[1]=0;
 			result[2]=0;
 			createOutput(result);
+			Integer[][] test = new Integer[3][3];
+			test[0]=result;
+			test[1]=result;
+			test[2]=result;
+			createCompleteOutput(test);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -171,17 +176,40 @@ public class Chereau {
 	}
 	
 	public static void createOutput(Integer[] result){
-		
-		
 		FileWriter fw;
 		try {
 			fw = new FileWriter(new File ("out.txt"));
 			@SuppressWarnings("resource")
 			BufferedWriter bw = new BufferedWriter(fw);
+			createOutput(result, bw);
+			bw.flush();
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void createOutput(Integer[] result, BufferedWriter bw) throws IOException{
+		bw.write(""+result.length);
+		for(int i=0; i<result.length; i++){
+			bw.write("\n");
+			bw.write(result[i]+"");
+		}
+		
+	}
+	
+		
+	public static void createCompleteOutput(Integer[][] result){
+		FileWriter fw;
+		try {
+			fw = new FileWriter(new File ("out.txt"));
+			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(""+result.length);
+			bw.write("\n");
 			for(int i=0; i<result.length; i++){
+				createOutput(result[i], bw);
 				bw.write("\n");
-				bw.write(result[i]+"");
 			}
 			bw.flush();
 			bw.close();
