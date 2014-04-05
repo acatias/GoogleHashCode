@@ -13,6 +13,8 @@ import saita.Route;
 
 public class Chereau {
 
+	private static String OUTPUT_NAME = "sortie.txt";
+	
 	public static void main(String[] args){
 		//parsing du fichier et création du graph
 		FileReader fr;
@@ -178,7 +180,7 @@ public class Chereau {
 	public static void createOutput(Integer[] result){
 		FileWriter fw;
 		try {
-			fw = new FileWriter(new File ("out.txt"));
+			fw = new FileWriter(new File (OUTPUT_NAME));
 			@SuppressWarnings("resource")
 			BufferedWriter bw = new BufferedWriter(fw);
 			createOutput(result, bw);
@@ -203,7 +205,7 @@ public class Chereau {
 	public static void createCompleteOutput(Integer[][] result){
 		FileWriter fw;
 		try {
-			fw = new FileWriter(new File ("out.txt"));
+			fw = new FileWriter(new File (OUTPUT_NAME));
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(""+result.length);
 			bw.write("\n");
