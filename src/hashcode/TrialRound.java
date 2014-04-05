@@ -173,9 +173,9 @@ public class TrialRound {
 	public static void trialV2() {
 		
 		try {
-			FileReader fr = new FileReader(new File("C:/github/GoogleHashCode/doodle.txt"));
+			FileReader fr = new FileReader(new File("doodle.txt"));
 			
-			FileWriter fw = new FileWriter(new File ("C:/github/GoogleHashCode/out4.txt"));
+			FileWriter fw = new FileWriter(new File ("out4.txt"));
 						
 			BufferedReader br = new BufferedReader(fr);
 			
