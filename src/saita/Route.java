@@ -29,6 +29,20 @@ public class Route {
 		System.out.println("  isVisited: " + isVisited);
 	}
 	
+	public boolean equals(Object obj) {
+		
+		if (obj != null && obj instanceof Route) {
+			return ((Route) obj).start == this.start && ((Route) obj).end == this.end;
+		}
+		
+		return false;
+	}
+	
+	public int hashCode() {
+		
+		return (this.start + " - " + this.end).hashCode();
+	}
+	
 	public static void main(String[] test) {
 		
 		new Route(0, 1, 10, 5, true).print();

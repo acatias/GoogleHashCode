@@ -119,10 +119,11 @@ public class Chereau {
 				int roadTime = Integer.parseInt(line.substring(0, line.indexOf(" ")));
 				line=line.substring(line.indexOf(" ")+1);
 				int length = Integer.parseInt(line);
+				Route uniqueRoute = new Route(firstNode, secondNode, roadTime, length, direction!=1);
 				if(direction!=1){
-					graph[secondNode].addRoute(new Route(firstNode, secondNode, roadTime, length, direction!=1));
+					graph[secondNode].addRoute(uniqueRoute);
 				}
-				graph[firstNode].addRoute(new Route(firstNode, secondNode, roadTime, length, direction!=1));
+				graph[firstNode].addRoute(uniqueRoute);
 				line=br.readLine();
 			}
 			
@@ -193,10 +194,9 @@ public class Chereau {
 	}
 
 	public static void createOutput(Integer[] result, BufferedWriter bw) throws IOException{
-		bw.write(""+result.length);
 		for(int i=0; i<result.length; i++){
-			bw.write("\n");
 			bw.write(result[i]+"");
+			bw.write("\n");
 		}
 		
 	}
