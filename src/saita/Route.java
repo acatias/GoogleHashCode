@@ -7,6 +7,8 @@ public class Route {
 	int time;
 	int dist;
 	boolean isDeux;
+	boolean isVisited;
+
 	
 	public Route(int start, int end, int time, int dist, boolean isDeux) {
 		this.start = start;
@@ -14,6 +16,8 @@ public class Route {
 		this.time = time;
 		this.dist = dist;
 		this.isDeux = isDeux;
+		this.isVisited = false;
+
 	}
 	
 	public void print() {
@@ -23,6 +27,7 @@ public class Route {
 		System.out.println("  time: " + time);
 		System.out.println("  dist: " + dist);
 		System.out.println("  isDeux: " + isDeux);
+		System.out.println("  isVisited: " + isVisited);
 	}
 	
 	public static void main(String[] test) {
